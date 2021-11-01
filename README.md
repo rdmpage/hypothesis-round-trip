@@ -4,6 +4,15 @@ Explore creating annotations on PDFs using hypothesis.is API and displaying them
 
 To view local PDF http://localhost/~rpage/hypothesis-round-trip/pdf.js-hypothes.is/viewer/web/viewer.html?file=../../../ZK_article_71171_en_1.pdf
 
+## Approach
+
+1. Start with a PDF
+2. Extract fingerprint to uniquely identify PDF
+3. Extact text and add annotations using text position and quote anchors
+4. Add annotations to hypothes.is database
+5. View annotations on PDFs using PDF.js + hypothesis.is
+6. Consider tools to add annotations natively to PDF
+
 ## Hypothes.is API 
 
 Documentation https://h.readthedocs.io/en/latest/api-reference/v1/
@@ -17,6 +26,27 @@ API URL https://api.hypothes.is/api/annotations/X77zqjsVEeynpYdCSxwsag
 ## Annotating a PDF
 
 It looks like having text location, both as character positions in PDF text stream, and using quote selector with 32 character prefix and suffix is enough for hypothes.is to locate the annotation. Hence we can create an annotation using the API and have it display in the hypothes.is version of PDF.js.
+
+```json
+"target": [
+    {
+      "source": "urn:x-pdf:2a25e5f056859b4186c28a4b67e87d49",
+      "selector": [
+        {
+          "type": "TextQuoteSelector",
+          "exact": "Nanhaipotamon longhaiense sp. nov.",
+          "prefix": ", 1896 Nanhaipotamon Bott, 1968 ",
+          "suffix": " http://zoobank.org/E25133A7-AB4A"
+        },
+        {
+          "end": 7958,
+          "type": "TextPositionSelector",
+          "start": 7924
+        }
+      ]
+    }
+  ],
+```
 
 ## PDF fingerprint
 
