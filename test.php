@@ -43,6 +43,7 @@ function get_pdf_fingerprint($filename)
 	
 }
 
+//----------------------------------------------------------------------------------------
 
 // file and identifiers
 $filename 	= 'ZK_article_71171_en_1.pdf';
